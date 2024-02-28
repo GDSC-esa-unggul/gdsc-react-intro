@@ -1,15 +1,20 @@
 import { useState } from "react";
 
-export default function Button() {
-  const [btnText, setBtnText] = useState("ini button");
-
-  const onClickButton = () => {
-    setBtnText('Halo anjay')
-  };
+/* eslint-disable react/prop-types */
+export default function Button(props) {
+  const [onCLicked, setOnCliked] = useState(false);
 
   return (
-    <button className="p-2 bg-blue-500 border-2 border-blue-800 rounded-sm" onClick={onClickButton}>
-      {btnText}
-    </button>
-  )
+    <>
+      <button
+        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded `}
+        onClick={() => setOnCliked(true)}
+      >
+        {props.children}
+        {
+          onCLicked === true && <span>Clicked</span>
+        }
+      </button>
+    </>
+  );
 }
